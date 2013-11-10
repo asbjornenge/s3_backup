@@ -25,6 +25,5 @@ def dump_mysql(db_conn, dump_path):
     db_conn = extract_db_vars(db_conn)
     path    = dump_path+'.sql'
     cmd     = 'mysqldump -u%s -p%s %s > %s' % (db_conn['username'], db_conn['password'], db_conn['db_name'], path)
-    print cmd
     subprocess.call(cmd, shell=True)
     return path
