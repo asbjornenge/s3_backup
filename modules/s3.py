@@ -1,4 +1,5 @@
 import time
+from boto.s3.key import Key
 from datetime import datetime as _date
 from datetime import timedelta
 

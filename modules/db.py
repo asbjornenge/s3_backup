@@ -15,7 +15,16 @@ def extract_db_vars(conn_str):
 	}
 
 def dump_psql(db_conn, dump_path):
-	db_conn = extract_db_vars(db_conn)
-	os.environ['PGPASSWORD'] = db_conn['password']
-	subprocess.call('pg_dump %s > %s -U postgres -h %s' % (db_conn['db_name'], dump_path, db_conn['host']), shell=True)
-	return dump_path
+    db_conn = extract_db_vars(db_conn)
+    os.environ['PGPASSWORD'] = db_conn['password']
+    path    = dump_path+'.sql'
+    subprocess.call('pg_dump %s > %s -U postgres -h %s' % (db_conn['db_name'], path, db_conn['host']), shell=True)
+    return path
+
+def dump_mysql(db_conn, dump_path):
+    db_conn = extract_db_vars(db_conn)
+    path    = dump_path+'.sql'
+    cmd     = 'mysqldump -u%s -p%s %s > %s' % (db_conn['username'], db_conn['password'], db_conn['db_name'], path)
+    print cmd
+    subprocess.call(cmd, shell=True)
+    return path
