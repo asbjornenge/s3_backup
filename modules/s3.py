@@ -47,3 +47,22 @@ def filterDate(date, bucketList):
     return lastModified(x) - date
   # Using max here actually ties this function to it's current use 'latest'.
   return max(bucketList, key=compareKeyDate)
+
+def upload(bucket, s3_name, local_path):
+  k     = Key(bucket)
+  k.key = s3_name
+  k.set_contents_from_filename(local_path)
+  return k
+
+# for archive in archives:
+#     k      = Key(bucket)
+#     k.key  = 'th3db1.www.taghub.net/%s-%s' % (archive, str(datetime.datetime.utcnow()))
+#     k.path = 'th3db1.www.taghub.net'
+
+#     def percent_cb(complete, total):
+#         sys.stdout.write('.')
+#         sys.stdout.flush()
+#     print "Sending %s to S3 bucket" % archive
+#     k.set_contents_from_filename(root+archive, cb=percent_cb, num_cb=10)
+#     print "%s has been sent successfully!" % archive
+# print "Backup tasks complete!"
