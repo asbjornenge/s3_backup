@@ -1,0 +1,6 @@
+.Python
+backup_*.py
+cleanup_*.py
+bin/
+include/
+lib/
