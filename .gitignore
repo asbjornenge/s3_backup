@@ -1,5 +1,6 @@
 .Python
 *.pyc
+backup.cfg
 backup_*.py
 cleanup_*.py
 bin/
